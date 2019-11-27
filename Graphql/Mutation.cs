@@ -9,7 +9,13 @@ namespace Api.Graphql
     [GraphQLMetadata("addAuthor")]
     public Author Add(string name)
     {
-      return null;
+      using(var db = new StoreContext()) 
+      {
+        var author = new Author(){ Name = name };
+        db.Authors.Add(author);
+        db.SaveChanges();
+        return author;
+      }
     }
   }
 }

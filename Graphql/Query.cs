@@ -1,13 +1,10 @@
-// Graphql/Query.cs
 
 using System.Collections.Generic;
 using GraphQL;
 using System.Linq;
 using Api.Database;
-using System;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-//using Api.Controller;
+
 namespace Api.Graphql 
 {
   public class Query
@@ -16,20 +13,35 @@ namespace Api.Graphql
     [GraphQLMetadata("books")]
     public IEnumerable<Book> GetBooks()
     {
-      return Enumerable.Empty<Book>();
+      using(var db = new StoreContext())
+      {
+        return db.Books
+        .Include(b => b.Author)
+        .ToList();
+      }
     }
 
     [GraphQLMetadata("authors")]
     public IEnumerable<Author> GetAuthors() 
     {
-      return Enumerable.Empty<Author>();
+      using (var db = new StoreContext())
+      {
+        return db.Authors
+        .Include(a => a.Books)
+        .ToList();
+      }
     }
 
     [GraphQLMetadata("author")]
     public Author GetAuthor(int id)
     {
-      return null;
-    } // will return author(id: ID): Author
+      using (var db = new StoreContext())
+      {
+        return db.Authors
+        .Include(a => a.Books)
+        .SingleOrDefault(a => a.Id == id);
+      }
+    }
 
     [GraphQLMetadata("hello")]
     public string GetHello()
