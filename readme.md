@@ -2,12 +2,13 @@
 This Project is initiated with :
 `dotnet new webapp -o aspnetcoreapp`
 
-## Requirments
+### Requirments
 
 `dotnet add package GraphQL --version 2.4.0`
+
 `dotnet add package graphiql --version 1.2.0`
 
-## run
+### run
 
 `dotnet run`
 
