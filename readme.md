@@ -17,5 +17,14 @@ This Project is initiated with :
 Navigate to :
 `https://localhost:5001/graphql/`
 
+### Queries
+We Seed the database in the main() method inside Program.cs
+
+`query{author(id:1){name}}`
+
+`mutation{addAuthor(name:"Paolo Coelho")}`
+
+```query{authors {  id,name,books}}```
+
 #### Resource
 Base on [this article](https://dev.to/dotnet/how-you-can-build-a-web-api-using-graphql-net-core-and-entity-framework-1ago)
