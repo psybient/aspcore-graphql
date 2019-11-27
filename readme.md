@@ -9,7 +9,7 @@ This Project is initiated with :
 
 ## run
 
-dotnet run
+`dotnet run`
 
 ### Use GraphiQL
 
